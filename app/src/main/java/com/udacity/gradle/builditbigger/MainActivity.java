@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
+import com.vw.example.ayush.javajokes.Joker;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        //Joker myJoker = new Joker();
+        Toast.makeText(this,"derp", Toast.LENGTH_SHORT).show();
     }
 
 
