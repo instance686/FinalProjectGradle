@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/fetch_data" />
             <option value="$PROJECT_DIR$/javaJokes" />
             <option value="$PROJECT_DIR$/library_test" />
             <option value="$PROJECT_DIR$/severdata" />

@@ -1,21 +1,25 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
+import com.udacity.gradle.builditbigger.FetchData.EndpointsAsyncTask;
 import com.vw.example.ayush.javajokes.Joker;
 import com.vw.example.ayush.library_test.JokesDisplay;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String joke_text="joketext";
-
+    String resp="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +53,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Joker myJoker = new Joker();
-        //Toast.makeText(this,myJoker.getJoke(), Toast.LENGTH_SHORT).show();
+
+        EndpointsAsyncTask endpointsAsyncTask=new EndpointsAsyncTask(new EndpointsAsyncTask.OnTaskCompleted(){
+
+            @Override
+            public void setData(String text) {
+               // Log.i("response_data",text);
+                resp=text;
+
+            }
+        });
+        endpointsAsyncTask.execute(new Pair<Context, String>(this, "abc"));
         Intent i=new Intent(this, JokesDisplay.class);
-        i.putExtra(joke_text,myJoker.getJoke());
+        i.putExtra(joke_text,resp);
         startActivity(i);
     }
-
-
 }

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -19,6 +20,7 @@ import com.google.android.gms.ads.MobileAds;
 public class MainActivityFragment extends Fragment {
 
     private AdView mAdView;
+    private Spinner spinner;
 
     public MainActivityFragment() {
     }
@@ -29,6 +31,7 @@ public class MainActivityFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
         mAdView = (AdView) root.findViewById(R.id.adView);
+        spinner=root.findViewById(R.id.progressBar1);
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
         // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
@@ -64,4 +67,7 @@ public class MainActivityFragment extends Fragment {
         }
         super.onDestroy();
     }
+
+
+
 }
