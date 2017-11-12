@@ -1,1 +1,1 @@
-include ':app', ':javaJokes', ':library_test'
+include ':app', ':javaJokes', ':library_test', ':fetch_data', ':severdata'
