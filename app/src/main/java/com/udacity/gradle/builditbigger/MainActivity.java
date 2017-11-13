@@ -10,22 +10,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
+
 
 import com.google.android.gms.ads.MobileAds;
 import com.udacity.gradle.builditbigger.FetchData.EndpointsAsyncTask;
-import com.vw.example.ayush.javajokes.Joker;
 import com.vw.example.ayush.library_test.JokesDisplay;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String joke_text="joketext";
     String resp="";
+    MainActivityFragment mainActivityFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          MobileAds.initialize(this, getResources().getString(R.string.banner_ad_unit_id));
-
+        mainActivityFragment= (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
 
     }
 
@@ -60,12 +63,16 @@ public class MainActivity extends AppCompatActivity {
             public void setData(String text) {
                // Log.i("response_data",text);
                 resp=text;
+              //  Toast.makeText(MainActivity.this, resp, Toast.LENGTH_SHORT).show();
+                mainActivityFragment.getProgressBar().setVisibility(View.GONE);
+                Intent i=new Intent(MainActivity.this, JokesDisplay.class);
+                i.putExtra(joke_text,resp);
+                startActivity(i);
 
             }
         });
+        mainActivityFragment.getProgressBar().setVisibility(View.VISIBLE);
         endpointsAsyncTask.execute(new Pair<Context, String>(this, "abc"));
-        Intent i=new Intent(this, JokesDisplay.class);
-        i.putExtra(joke_text,resp);
-        startActivity(i);
+
     }
 }
