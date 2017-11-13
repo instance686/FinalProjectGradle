@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vw.example.ayush.library_test">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application>
         <activity android:name=".JokesDisplay"></activity>
     </application>
