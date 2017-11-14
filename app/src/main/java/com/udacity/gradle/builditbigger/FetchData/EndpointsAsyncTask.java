@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger.FetchData;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ayush.myapplication.severdata.myApi.MyApi;
@@ -22,6 +23,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     private static MyApi myApiService = null;
     private Context context;
     OnTaskCompleted onTaskCompleted=null;
+
 
     public EndpointsAsyncTask(OnTaskCompleted listener){
         onTaskCompleted=listener;
@@ -61,10 +63,12 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected void onPostExecute(String result) {
       // Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        onTaskCompleted.setData(result);
+             onTaskCompleted.setData(result);
 
     }
     public interface OnTaskCompleted{
         void setData(String text);
     }
+
+
 }

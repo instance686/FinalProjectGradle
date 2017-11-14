@@ -9,9 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-import android.support.v4.app.Fragment;
-
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
