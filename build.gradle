@@ -2,7 +2,6 @@
 
 buildscript {
     repositories {
-       // google()
         jcenter()
 
     }
@@ -16,10 +15,17 @@ buildscript {
 
 allprojects {
     repositories {
-      //  google()
         jcenter()
         maven {
             url "https://maven.google.com"
         }
+    }
+
+}
+project(':severdata') {
+    task sequence{
+        dependsOn "appengineRun"
+        dependsOn "test"
+        dependsOn "appengineStop"
     }
 }
