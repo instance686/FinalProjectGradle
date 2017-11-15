@@ -18,7 +18,7 @@ import static android.support.test.internal.runner.junit4.statement.UiThreadStat
  * Created by ayush on 15/11/17.
  */
 public class EndpointsAsyncTaskTest extends AndroidTestCase {
-    String val=" ";
+    String joke=null;
 
     protected void setUp() throws Exception {
         super.setUp();
@@ -36,19 +36,16 @@ public class EndpointsAsyncTaskTest extends AndroidTestCase {
             new EndpointsAsyncTask(new EndpointsAsyncTask.OnTaskCompleted() {
                 @Override
                 public void setData(String text) {
+                    joke=text;
+                    signal.countDown();
                 }
-            }){
-                @Override
-                protected void onPostExecute(String result) {
-                    val=result;
-                }
-            }.execute(new Pair<Context, String>(getContext(), " "));
+            }).execute();
             }
         });
 
-        signal.await(10, TimeUnit.SECONDS);
+        signal.await(30, TimeUnit.SECONDS);
+        assertTrue("Valid joke is returned", joke !=null);
 
-        assertEquals("This is totally a funny joke",val.trim());
     }
 
 

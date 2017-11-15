@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
         mainActivityFragment.getProgressBar().setVisibility(View.VISIBLE);
-        endpointsAsyncTask.execute(new Pair<Context, String>(this, " "));
+        endpointsAsyncTask.execute();
 
     }
 
