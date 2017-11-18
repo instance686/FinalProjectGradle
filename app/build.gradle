@@ -21,6 +21,11 @@ android {
         }
     }
     productFlavors {
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+            versionName "1.0-paid"
+            buildConfigField "boolean", "PAID_VERSION", "true"
+        }
         free {
             applicationId "com.udacity.gradle.builditbigger.free"
             versionName "1.0-free"
@@ -28,10 +33,17 @@ android {
             // and now you can identify if your app is the paid version or not
             buildConfigField "boolean", "PAID_VERSION", "false"
         }
+
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java/com.udacity.gradle.builditbigger.paid']
+        }
         paid {
-            applicationId "com.udacity.gradle.builditbigger.paid"
-            versionName "1.0-paid"
-            buildConfigField "boolean", "PAID_VERSION", "true"
+            manifest.srcFile 'src/paid/AndroidManifest.xml'
+        }
+        free {
+            manifest.srcFile 'src/free/AndroidManifest.xml'
         }
     }
 }
@@ -41,17 +53,17 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(path: ':severdata', configuration: 'android-endpoints')
+    compile project(':library_test')
+
+
     compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.google.android.gms:play-services-ads:11.4.2'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile 'com.google.http-client:google-http-client-android:1.23.0'
     compile 'com.google.api-client:google-api-client:1.23.0'
-    compile project(path: ':severdata', configuration: 'android-endpoints')
-    compile project(':library_test')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support:support-annotations:26.1.0'
-
-
-
+    freeCompile 'com.google.android.gms:play-services-ads:11.4.2'
 }
